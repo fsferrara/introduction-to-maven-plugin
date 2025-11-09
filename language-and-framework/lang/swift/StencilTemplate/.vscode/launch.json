@@ -1,0 +1,28 @@
+{
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "args": [],
+            "cwd": "${workspaceFolder:StencilTemplate}",
+            "name": "Debug stencil-template",
+            "program": "${workspaceFolder:StencilTemplate}/.build/debug/stencil-template",
+            "preLaunchTask": "swift: Build Debug stencil-template"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "args": [],
+            "cwd": "${workspaceFolder:StencilTemplate}",
+            "name": "Release stencil-template",
+            "program": "${workspaceFolder:StencilTemplate}/.build/release/stencil-template",
+            "preLaunchTask": "swift: Build Release stencil-template"
+        }
+    ]
+}

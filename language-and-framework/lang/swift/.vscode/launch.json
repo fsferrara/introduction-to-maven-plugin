@@ -7,10 +7,10 @@
                 "swift"
             ],
             "args": [],
-            "cwd": "${workspaceFolder:sandbox}/programming/swift/hello",
-            "name": "Debug hello (programming/swift/hello)",
-            "program": "${workspaceFolder:sandbox}/programming/swift/hello/.build/debug/hello",
-            "preLaunchTask": "swift: Build Debug hello (programming/swift/hello)"
+            "cwd": "${workspaceFolder:swift}/hello",
+            "name": "Debug hello (hello)",
+            "program": "${workspaceFolder:swift}/hello/.build/debug/hello",
+            "preLaunchTask": "swift: Build Debug hello (hello)"
         },
         {
             "type": "lldb",
@@ -19,10 +19,82 @@
                 "swift"
             ],
             "args": [],
-            "cwd": "${workspaceFolder:sandbox}/programming/swift/hello",
-            "name": "Release hello (programming/swift/hello)",
-            "program": "${workspaceFolder:sandbox}/programming/swift/hello/.build/release/hello",
-            "preLaunchTask": "swift: Build Release hello (programming/swift/hello)"
+            "cwd": "${workspaceFolder:swift}/hello",
+            "name": "Release hello (hello)",
+            "program": "${workspaceFolder:swift}/hello/.build/release/hello",
+            "preLaunchTask": "swift: Build Release hello (hello)"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "args": [],
+            "cwd": "${workspaceFolder:swift}/StencilTemplate",
+            "name": "Debug stencil-template (StencilTemplate)",
+            "program": "${workspaceFolder:swift}/StencilTemplate/.build/debug/stencil-template",
+            "preLaunchTask": "swift: Build Debug stencil-template (StencilTemplate)"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "args": [],
+            "cwd": "${workspaceFolder:swift}/StencilTemplate",
+            "name": "Release stencil-template (StencilTemplate)",
+            "program": "${workspaceFolder:swift}/StencilTemplate/.build/release/stencil-template",
+            "preLaunchTask": "swift: Build Release stencil-template (StencilTemplate)"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "args": [],
+            "cwd": "${workspaceFolder:swift}/hello",
+            "name": "Debug Hello (hello)",
+            "program": "${workspaceFolder:swift}/hello/.build/debug/Hello",
+            "preLaunchTask": "swift: Build Debug Hello (hello)"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "args": [],
+            "cwd": "${workspaceFolder:swift}/hello",
+            "name": "Release Hello (hello)",
+            "program": "${workspaceFolder:swift}/hello/.build/release/Hello",
+            "preLaunchTask": "swift: Build Release Hello (hello)"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "args": [],
+            "cwd": "${workspaceFolder:swift}/Hello",
+            "name": "Debug Hello (Hello)",
+            "program": "${workspaceFolder:swift}/Hello/.build/debug/Hello",
+            "preLaunchTask": "swift: Build Debug Hello (Hello)"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "args": [],
+            "cwd": "${workspaceFolder:swift}/Hello",
+            "name": "Release Hello (Hello)",
+            "program": "${workspaceFolder:swift}/Hello/.build/release/Hello",
+            "preLaunchTask": "swift: Build Release Hello (Hello)"
         }
     ]
 }

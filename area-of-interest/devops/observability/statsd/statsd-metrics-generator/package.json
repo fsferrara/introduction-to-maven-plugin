@@ -1,0 +1,24 @@
+{
+  "name": "statsd-metrics-generator",
+  "version": "1.0.0",
+  "description": "Randomically generates statsd metrics",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "sniffer": "netcat -ulzp 8125",
+    "docker:build": "docker build -t fsferrara/statsd-metrics-generator .",
+    "docker:run": "docker run -d --name statsd-metrics-generator fsferrara/statsd-metrics-generator",
+    "docker:logs": "docker logs -f statsd-metrics-generator",
+    "docker:ssh": "docker exec -it /statsd-metrics-generator /bin/bash",
+    "docker:stop": "docker rm -f statsd-metrics-generator",
+    "clean:modules": "rimraf node_modules"
+  },
+  "author": "fsferrara",
+  "license": "ISC",
+  "dependencies": {
+    "statsd-client": "^0.4.5"
+  },
+  "devDependencies": {
+    "rimraf": "^3.0.2"
+  }
+}

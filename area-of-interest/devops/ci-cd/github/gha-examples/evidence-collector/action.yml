@@ -1,0 +1,15 @@
+name: "evidence-collector-action"
+description: "Collect evidences and store them into evicende files"
+inputs:
+  dockerfile:
+    description: The directory's path of Dockerfile
+    required: false
+    default: "Dockerfile"
+runs:
+  using: "composite"
+  steps:
+    - name: "evidence-collector-run"
+      run: $GITHUB_ACTION_PATH/entrypoint.sh
+      shell: bash
+      env:
+          DOCKERFILE: ${{ inputs.dockerfile }}

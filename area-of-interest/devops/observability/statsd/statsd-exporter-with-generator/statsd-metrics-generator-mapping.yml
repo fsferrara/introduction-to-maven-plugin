@@ -1,0 +1,16 @@
+# statsd-metrics-exporter statsd metrics
+# - statsd-metrics-exporter.node.gauge:10|g
+# - statsd-metrics-exporter.node.timer:102522|ms
+# - statsd-metrics-exporter.node.set:50|s
+# - statsd-metrics-exporter.node.set:100|s
+# - statsd-metrics-exporter.node.set:50|s
+# - statsd-metrics-exporter.node.histogram:10|h|#foo:barstatsd-metrics-exporter.node.counter:10|c
+
+mappings:
+    # usage: statsd-metrics-exporter.node.timer
+  - match: "statsd-metrics-exporter.*.timer"
+    name: "statsd_metrics_exporter"
+    labels:
+        process_name: "$1"
+
+        

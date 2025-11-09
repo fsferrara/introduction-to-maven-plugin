@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  statsd-metrics-generator:
+    image: fsferrara/statsd-metrics-generator
+    links:
+      - prom-statsd-exporter
+    environment:
+      STATSD_HOST: prom-statsd-exporter
+
+  prom-statsd-exporter:
+    image: prom/statsd-exporter
+    ports:
+      - 9102:9102
+      - 8125:8125/udp
+    command:
+      - "--statsd.mapping-config=/tmp/statsd-metrics-generator-mapping.yml"
+      - "--statsd.listen-udp=:8125"
+      - "--web.listen-address=:9102"
+    volumes:
+      - "./statsd-metrics-generator-mapping.yml:/tmp/statsd-metrics-generator-mapping.yml"

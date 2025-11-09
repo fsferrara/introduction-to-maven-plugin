@@ -1,0 +1,40 @@
+{
+  "name": "node-hapi-simple-template",
+  "version": "1.0.0",
+  "description": "node hapi simple",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "start:inspect": "node --inspect src/index.js",
+    "start:inspect:brk": "node --inspect-brk src/index.js",
+    "test": "jest",
+    "clean:modules": "rimraf node_modules"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/fsferrara/sandbox.git"
+  },
+  "keywords": [
+    "node",
+    "javascript",
+    "jest",
+    "template"
+  ],
+  "author": "fsferrara",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fsferrara/sandbox/issues"
+  },
+  "homepage": "https://github.com/fsferrara/sandbox#readme",
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "devDependencies": {
+    "jest": "^25.4.0",
+    "rimraf": "^3.0.2"
+  },
+  "dependencies": {
+    "@hapi/hapi": "^21.3.2"
+  }
+}

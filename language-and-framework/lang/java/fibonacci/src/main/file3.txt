@@ -1,0 +1,3 @@
+lambdas are expressive.
+lambdas don't have state, but closure carry state.
+avoid multiline lambdas, since such lambdas are terrible.

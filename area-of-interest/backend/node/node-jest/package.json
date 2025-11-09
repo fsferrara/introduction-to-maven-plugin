@@ -1,0 +1,37 @@
+{
+  "name": "generic-template",
+  "version": "1.0.0",
+  "description": "node generic template",
+  "main": "src/index.js",
+  "scripts": {
+    "watch": "nodemon src/index.js",
+    "start": "node src/index.js",
+    "test": "jest -c jest.config.js --coverage",
+    "test-inspect": "node --inspect-brk node_modules/.bin/jest --runInBand -c jest.config.js",
+    "clean": "rimraf coverage",
+    "clean:modules": "rimraf node_modules",
+    "lint": "eslint \"**/*.js\" --ignore-pattern node_modules/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/fsferrara/sandbox.git"
+  },
+  "keywords": [
+    "node",
+    "javascript",
+    "jest",
+    "template"
+  ],
+  "author": "fsferrara",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fsferrara/sandbox/issues"
+  },
+  "homepage": "https://github.com/fsferrara/sandbox#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "jest": "^25.4.0",
+    "nodemon": "^2.0.3",
+    "rimraf": "^3.0.2"
+  }
+}

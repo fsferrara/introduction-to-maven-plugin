@@ -1,0 +1,93 @@
+@import "freight-sans-font-face.css";
+
+#title-text {
+	font-family: 'FreightSansLF Pro', Georgia, serif;
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 48px;
+    margin: 0 auto 16px;
+    padding-top: 1em !important;
+    max-width: 800px;
+}
+#title-text a {
+    color: #292929;
+}
+
+.page-metadata,
+.page-metadata ul li a:link,
+.page-metadata ul li a:visited {
+   font-size: 14px;
+   line-height: 16px;
+   color: #717171;
+}
+
+#content {
+   font: normal 18px/26px 'FreightSansLF Pro',  Georgia, serif;
+   color: #292929;
+   margin: 0 auto;
+}
+
+#content p + p {
+   margin-top: 1.25em;
+}
+
+#content h1 {
+   font-weight: 700;
+   font-size: 32px;
+   line-height: 40px;
+   margin-bottom: 16px;
+   color: #292929;
+}
+
+#content h2 {
+   font-weight: 700;
+   font-size: 24px;
+   line-height: 32px;
+   margin-bottom: 16px;
+   color: #292929;
+}
+
+#content h3 {
+   font-weight: 700;
+   font-size: 18px;
+   line-height: 26px;
+   margin-bottom: 16px;
+   color: #292929;
+}
+
+#content h4 {
+   font-weight: 700;
+   font-size: 18px;
+   line-height: 26px;
+   margin-bottom: 16px;
+   color: #292929;
+}
+
+#content h5 {
+   font-weight: 700;
+   font-size: 18px;
+   line-height: 26px;
+   margin-bottom: 16px;
+   color: #292929;
+}
+
+#content blockquote {
+   font-style: italic;
+   font-size: 1.5em;
+   line-height: 1.3em;
+   color: #717171 
+	border-left-color: #ddddde;
+    border-left-width: 8px;
+    margin: 2em 1em;
+    padding-left: 1em;
+	color: #717171;
+}
+
+#content blockquote em,
+#content blockquote i { 
+   font-style: normal;
+}
+
+#content .comment blockquote {
+    font-size: inherit;
+}

@@ -1,0 +1,39 @@
+{
+  "name": "generic-template",
+  "version": "1.0.0",
+  "description": "node generic template",
+  "main": "src/index.js",
+  "scripts": {
+    "watch": "nodemon src/index.js",
+    "start": "node src/index.js",
+    "clean:modules": "rimraf node_modules",
+    "lint": "eslint \"**/*.js\" --ignore-pattern node_modules/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/fsferrara/sandbox.git"
+  },
+  "keywords": [
+    "node",
+    "javascript"
+  ],
+  "author": "fsferrara",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fsferrara/sandbox/issues"
+  },
+  "homepage": "https://github.com/fsferrara/sandbox#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "nodemon": "^2.0.3",
+    "rimraf": "^3.0.2"
+  },
+  "dependencies": {
+    "apollo-link": "^1.2.14",
+    "apollo-link-context": "^1.0.20",
+    "apollo-link-http": "^1.5.17",
+    "apollo-server": "^2.17.0",
+    "graphql": "15.3.0",
+    "node-fetch": "^2.6.0"
+  }
+}

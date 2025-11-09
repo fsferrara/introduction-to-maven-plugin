@@ -1,0 +1,35 @@
+{
+  "name": "graphql-js-express",
+  "version": "1.0.0",
+  "description": "graphql.js express tutorial",
+  "main": "src/gql-engine.js",
+  "scripts": {
+    "watch": "nodemon src/index.js",
+    "start": "node src/index.js",
+    "test": "jest",
+    "clean:modules": "rimraf node_modules",
+    "lint": "eslint \"**/*.js\" --ignore-pattern node_modules/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fsferrara/sandbox.git"
+  },
+  "keywords": [
+    "graphql"
+  ],
+  "author": "fsferrara",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fsferrara/sandbox/issues"
+  },
+  "homepage": "https://github.com/fsferrara/sandbox#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "jest": "^25.4.0",
+    "nodemon": "^2.0.3",
+    "rimraf": "^3.0.2"
+  },
+  "dependencies": {
+    "graphql": "^15.4.0"
+  }
+}

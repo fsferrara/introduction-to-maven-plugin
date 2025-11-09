@@ -1,0 +1,28 @@
+{
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "args": [],
+            "cwd": "${workspaceFolder:sandbox}/programming/swift/hello",
+            "name": "Debug hello (programming/swift/hello)",
+            "program": "${workspaceFolder:sandbox}/programming/swift/hello/.build/debug/hello",
+            "preLaunchTask": "swift: Build Debug hello (programming/swift/hello)"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "args": [],
+            "cwd": "${workspaceFolder:sandbox}/programming/swift/hello",
+            "name": "Release hello (programming/swift/hello)",
+            "program": "${workspaceFolder:sandbox}/programming/swift/hello/.build/release/hello",
+            "preLaunchTask": "swift: Build Release hello (programming/swift/hello)"
+        }
+    ]
+}

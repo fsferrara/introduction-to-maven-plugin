@@ -1,0 +1,17 @@
+products:
+  build: ./implementing-service-products
+  ports: 
+    - "4001:4001"
+
+reviews:
+  build: ./implementing-service-reviews
+  ports: 
+    - "4002:4002"
+
+gateway:
+  build: ./federated-gateway
+  ports:
+    - "4000:4000"
+  links:
+    - products:products
+    - reviews:reviews

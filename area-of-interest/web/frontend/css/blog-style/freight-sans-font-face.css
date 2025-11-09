@@ -1,0 +1,71 @@
+@font-face {
+	font-family: FreightSansLF Pro;
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url(FreigSanLFProBooLA.woff2) format("woff2"), url(FreigSanLFProBooLA.woff) format("woff");
+	unicode-range: 100â€”017f
+}
+
+@font-face {
+	font-family: FreightSansLF Pro;
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url(FreigSanLFProBooBL.woff2) format("woff2"), url(FreigSanLFProBooBL.woff) format("woff");
+	unicode-range: U+00??, U+02da, U+02dc, U+2000-206f, U+2074, U+20ac, U+2122, U+feff, U+fffd
+}
+
+@font-face {
+	font-family: FreightSansLF Pro;
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url(FreigSanLFProSemLA.woff2) format("woff2"), url(FreigSanLFProSemLA.woff) format("woff");
+	unicode-range: 100â€”017f
+}
+
+@font-face {
+	font-family: FreightSansLF Pro;
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url(FreigSanLFProSemBL.woff2) format("woff2"), url(FreigSanLFProSemBL.woff) format("woff");
+	unicode-range: U+00??, U+02da, U+02dc, U+2000-206f, U+2074, U+20ac, U+2122, U+feff, U+fffd
+}
+
+@font-face {
+	font-family: FreightSansLF Pro;
+	font-style: italic;
+	font-weight: 400;
+	font-display: fallback;
+	src: url(FreigSanLFProBooItaLA.woff2) format("woff2"), url(FreigSanLFProBooItaLA.woff) format("woff");
+	unicode-range: 100â€”017f
+}
+
+@font-face {
+	font-family: FreightSansLF Pro;
+	font-style: italic;
+	font-weight: 400;
+	font-display: fallback;
+	src: url(FreigSanLFProBooItaBL.woff2) format("woff2"), url(FreigSanLFProBooItaBL.woff) format("woff");
+	unicode-range: U+00??, U+02da, U+02dc, U+2000-206f, U+2074, U+20ac, U+2122, U+feff, U+fffd
+}
+
+@font-face {
+	font-family: FreightSansLF Pro;
+	font-style: italic;
+	font-weight: 700;
+	font-display: fallback;
+	src: url(FreigSanLFProSemItaLA.woff2) format("woff2"), url(FreigSanLFProSemItaLA.woff) format("woff");
+	unicode-range: 100â€”017f
+}
+
+@font-face {
+	font-family: FreightSansLF Pro;
+	font-style: italic;
+	font-weight: 700;
+	font-display: fallback;
+	src: url(FreigSanLFProSemItaBL.woff2) format("woff2"), url(FreigSanLFProSemItaBL.woff) format("woff");
+	unicode-range: U+00??, U+02da, U+02dc, U+2000-206f, U+2074, U+20ac, U+2122, U+feff, U+fffd
+}

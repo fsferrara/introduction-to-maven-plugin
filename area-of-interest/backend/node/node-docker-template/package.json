@@ -1,0 +1,29 @@
+{
+  "name": "node-remote-debugging",
+  "version": "1.0.0",
+  "description": "node remote debugging with docker",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "clean:modules": "rimraf node_modules"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/fsferrara/sandbox.git"
+  },
+  "keywords": [
+    "node",
+    "javascript",
+    "template"
+  ],
+  "author": "fsferrara",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fsferrara/sandbox/issues"
+  },
+  "homepage": "https://github.com/fsferrara/sandbox#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.3",
+    "rimraf": "^3.0.2"
+  }
+}

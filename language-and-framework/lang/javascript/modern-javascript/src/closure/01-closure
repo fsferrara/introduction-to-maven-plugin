@@ -1,0 +1,15 @@
+const sheepCounter = function() {
+    
+    // Closure
+    let counter = 0; //  there is no way to access this variable from outside
+
+    return {
+        increment: () => counter++,
+        print: () => console.log(`curently there are ${counter} sheeps`)
+    }
+}
+
+const sheeps = sheepCounter();
+sheeps.print();
+sheeps.increment();
+sheeps.print();

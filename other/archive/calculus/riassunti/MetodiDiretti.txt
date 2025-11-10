@@ -1,0 +1,61 @@
+GAUSS SENZA PIVOTING
+
+for k=1, n-1
+  for i=k+1, n
+    m[i,k] = a[i,k] / a[k,k]
+    for j=k+1, n
+      a[i,j] = a[i,j] - m[i,j] * a[k,j]
+    b[i] = b[i] - m[i,k] * b[k]
+
+Con questo algoritmo scomponiamo A = LU.
+Per risolvere il sistema Ax=b, diventa LUx=b, che per essere risolto richiede:
+- una forward substitution Ly=b
+- una back substitution Ux=y
+
+
+
+GAUSS CON PIVOTING
+
+for k=1, n-1
+  for i=k+1, n
+    //Pivoting
+    m[i,k] = a[i,k] / a[k,k]
+    for j=k+1, n
+      a[i,j] = a[i,j] - m[i,j] * a[k,j]
+    b[i] = b[i] - m[i,k] * b[k]
+
+Con questo algoritmo scomponiamo PA = LU.
+Per risolvere il sistema Ax=b, diventa PLUx=b, che per essere risolto richiede:
+- una forward substitution Ly=Pb
+- una back substitution Ux=y
+
+
+
+CHOLESKY
+
+procedure cholesky (in: n, a; out: a)
+  for j=1, n
+    for k=1, n-1
+      a[j,j] = a[j,j] a[j,k]^2
+    a[j,j] = sqrt(a[j,j])
+    for i=j+1, n
+      for k=1, j-1
+        a[i,j] = a[i,j] - a[i,k] * a[j,k]
+      a[i,j] = a[i,j] / a[j,j]
+
+La fattorizzazione di Cholesky si usa quando abbiamo una matrice:
+- simmetrica
+- definita positiva
+e scompone A in: A=L * Trasposta(L)
+dove L e' una matrice triangolare inferiore con L[i,i]>0 Per ogni i=0...n
+
+
+
+MATRICI TRIDIAGONALI
+
+u[1] = d[1]
+for i=1, n-1
+  g[i] = f[i]
+for i=2, n
+  l[i] = c[i] / u[i-1]
+  u[i] = d[i] - l[1] * g[i-1]

@@ -1,0 +1,96 @@
+La libreria Sparskit (versione 2) e' fatta per eseguire operazioni su matrici
+sparse. Essa e' strutturata in questo modo:
+
+Sparskit2
+|
+|
+|-Formats
+|
+|-Blassm
+|
+|-InOut
+|
+|-Matgen
+| |
+| |-Fdif
+| |
+| |-Fem
+| |
+| |-Misc
+|
+|-Itsol
+|
+|-Orderings
+|
+|-Unsupp
+| |
+| |-Matexp
+| |
+| |-Plots
+| |
+| |-Blas1
+|
+|-Info
+|
+|-Doc
+
+
+
+
+FORMATS
+
+Permette di trasformare il tipo di memorizzazione di una matrice sparsa.
+Ad esempio di puo' passare dal formato denso di una matrice (quello normale)
+a un formato Packed Storage per le matrici a banda, oppure al formato in
+tre vettori.
+
+
+
+BLASSM
+
+Esegue operazioni algebriche di base come quelle che convolgono due matrici.
+
+
+
+INOUT
+
+Gestisce l'input e l'output della matrici in qualunque formato. Usando queste
+routine il programmatore risparmia molto tempo.
+
+
+
+MATGEN
+
+Routine per generare matrici utili per i test.
+
+
+
+ITSOL
+
+Metodi iterativi per la risoluzione di sistemi lineari.
+
+
+
+ORDERINGS
+
+Routini utili a riordinare gli elementi della matrici seguendo vari criteri.
+
+
+
+UNSUPP
+
+Contiene routine che non sono di proprieta' di sparkit. Ad esempio BLAS1.
+
+
+
+INFO
+
+Sono routine che data una matrice in input restituiscono informazioni sulla
+matrice.
+
+
+
+DOC
+
+Contiene la documentazione di Sparskit 2 (comprende le Quick References).
+

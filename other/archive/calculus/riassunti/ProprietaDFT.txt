@@ -1,0 +1,149 @@
+PROPRIETA' DELLE DFT
+
+La proprieta' di LINEARITA':
+    DFT(ax + by) = a DFT(x) + b DFT(y)
+
+La proprita' di SIMMETRIA:
+    1/N DFT( DFT(x) ) = x
+
+
+
+PROBLEMA 1: calcolare la DFT di due vettori reali x, y.
+
+SOL:
+    DFT(x) = X   e   DFT(y) = Y
+Applicando alcune proprieta' si riduce il calcolo delle due DFT reali in un
+un'unica DFT complessa.
+
+1) Si completano i vettori x e y con gli elementi mancanti ripetendo i primi.
+
+Sappiamo
+a. x reale = DFT(x) e' hermitiano simmetrico
+    analogamente x hermitiano simmetrico -> X reale
+b. x immaginario = DFT(x) e' hermitiano antisimmetrico
+    analogamente x hermitiano antisimmetrico -> X immaginario
+
+
+DEF CONIUGATO DI UN NUMERO REALE
+Se (a+ib) e' un numero reale, il suo coniugato e' (a-ib)
+Di conseguenza l'opposto del coniugato e' -(a-ib) = (-a+ib)
+
+
+DEF HERMITIANO SIMMETRICO
+Se x e' un vettore, di N elementi, HERMITIANO SIMMETRICO allora l'elemento
+x[i] e' uguale al coniugato di x[N-i]
+
+DEF HERMITIANO ANTISIMMETRICO
+Se x e' un vettore, di N elementi, HERMITIANO ANTISIMMETRICO allora
+l'elemento x[i] e' uguale all'opposto del coniugato di x[N-i]
+
+
+2) Costruiamo il vettore z dai vettori x e y in questo modo:
+    z = x + iy
+
+3) DFT(z) = Z
+
+4) DFT (z) = DFT(x + iy) = DFT(x) + iDFT(y) = X + iY <-- Proprieta' di linearita'
+   Dove X e Y sono hermitiane e simmetriche
+
+
+
+PROBLEMA 2: calcolare la DFT di un vettore reale x di lunghezza 2*N
+
+Al posto di calcolare la DFT di un vettore reale di lunghezza 2 * N, si puo'
+anche calcolare la DFT di due vettori reali di lunghezza N... quindi tutto
+si riconduce al PROBLEMA 1.
+Ma come costruiamo questi due vettori di lunghezza N?
+
+
+1) Detto x il vettore di partenza (di lunghezza 2 * N), costruiamo i vettori
+h e g, uno contenente gli elementi di indice pari, e l'altro gli elementi di
+indice dispari.
+h(j) = x(2j)
+g(j) = x(2j+1)
+
+2) Poi, come fatto nel PROBLEMA 1 creiamo il vettore complesso dato dall'unione
+di h e g:
+y(j) = h(j) + i*g(j)
+
+3) Calcolare la DFT di y --> DFT[y] = Y
+
+4) Le DFT[h]=H e DFT[g]=G saranno uguali a:
+H(k) = 1/2 * ( coniugato[ Y(N-k) ] + Y(k) )
+G(k) = i/2 * ( coniugato[ Y(N-k) ] - Y(k) )
+
+5) La DFT[x]=X sara':
+X(k) = H(k) + e^( (-i*k*pigreco)/N ) * G(k)
+X(n+k) = Coniugato[X(k)]
+
+
+
+APPLICAZIONI DELLA DFT ALLE MATRICI CIRCOLANTI
+
+dalla slide 28 alla 34, ma non si capisce niente!
+
+
+
+TEOREMA DI CONVOLUZIONE
+
+Il teorema di convoluzione dice che la DFT della convoluzione di due vettori
+e' proprio il prodotto puntuale delle due DFT:
+
+          DFT[ f * g ] = F * G
+               ------    -----
+                 |         |
+                 |     puntuale
+            convoluzione
+
+Definizione di convoluzione:
+la concoluzione di vettori e' definita come:
+                                                      N-1
+f * g = t  --> dove per ogni j=0..n-1 risulta: t[j] = sum ( f[k] * g[j-k] )
+                                                      k=0
+
+Definizione di prodotto puntuale (o prodotto componente per componente):
+il prodotto puntuale tra due vettori e' definito come:
+f * g = t  --> dove per ogni j=0..n-1 risulta: t[j] = f[j] * g[j]
+
+
+
+PRODOTTO DI DUE POLINOMI
+
+Dati due polinomi di grado n-1, il loro prodotto sara' un polinomio di
+grado 2*n-2. Inoltre il modo in cui vengono effettuare le operazioni durante
+il prodotto tra polinomi, e' proprio una convoluzione tra i vettori formati dai
+coefficienti dei polinomi.
+
+1) Dati i vettori a = [ a(0), a(1), ... , a(n-1) ] e
+b = [ b(0), b(1), ... , b(n-1) ] rappresentanti i polinomi di grado N-1,
+allunghiamo questi due vettori come se appartenessero al grado 2*N-1, in questo
+modo:
+a = [ a(0), a(1), ... , a(n-1), 0, 0, ... , 0 ]
+b = [ b(0), b(1), ... , b(n-1), 0, 0, ... , 0 ]
+
+2) A questo punto calcoliamo la DFT[a] = A e la DFT[b] = B.
+
+3) Facciamo il prodotto puntuale tra A e B... dal teorema precedente sappiamo
+che il prodotto puntuale tra due DFT è proprio la DFT della convoluzione dei
+vettori di partenza:
+
+          DFT[ a * b ] = A * B
+               ------    -----
+                 |         |
+                 |     puntuale
+            convoluzione
+
+4) Non ci resta che effettuare la DFT inversa al prodotto puntuale per avere la
+convoluzione dei due vettori. La convoluzione dei due vettori e' proprio il
+prodotto dei polinomi in ingresso.
+
+
+
+DIFFERENZA TRA DFT e FT
+
+La trasformata discreta di Fourier (DFT) e' quella matematica, ma la FT e' quella
+calcolata a computer. Ogni volta che si usa il computer per calcoli matematici
+commettiamo degli errori, nel caso della DFT avremo:
+- Errore di troncamento dovuto alla sostituzione di un integrale infinito con
+uno finito;
+- Errore di discretizzazione dovuto alle formule di quadratura trapezoidale.

@@ -1,0 +1,43 @@
+NOZIONI SUI NUMERI COMPLESSI
+
+Per introdurre la DFT bisogna sapere le nozioni sui numeri complessi come la
+rappresentazione polare e quella cartesiana.
+Ricordiamo che i = sqrt(-1).
+Somma algebrica di numeri complessi:
+      si sommano separatemente la parte immagginaria e quella reale
+Prodotto di numeri complessi:
+      dati a+ib e c+id il loro prodotto e' (ac-bd)+i(ad+bc)
+E' possibile rappresentare graficamente i numeri complessi su un piano
+cartesiano.
+
+
+
+ALGORITMO FFT (radix 2)
+
+Dato un vettore di numeri complessi f[0], f[1], ..., f[n] calcoliamo la
+trasformata discreta di fourier e avremo un vettore F[0], F[1], ..., F[n].
+Questo vettore (che ci sara' dato in output dalla funzione) e' proprio la
+trasformata di fourier.
+Dalla trasformata di Fourier possiamo ricavarci il vettore di partenza con
+il procedimento inverso... quindi il vettore f[0], f[1], ..., f[n] e' anche
+chiamato Trasformata Discreta Inversa di Fourier.
+
+E' possibile ridurre il tempo di esecuzione usando lo schema a farfalla
+(butterfly). Con questo schema, per un vettore di N elementi (N deve essere
+potenza di due) si effettuano N * log(N) operazioni al posto di N^2.
+
+
+
+PERCHE' RADIX 2?
+
+Con radix 2 possiamo calcolare la DFT solo di vettori la cui lunghezza e' una
+potenza di due, mentre con radix 3 possiamo calcolare la DFT di vettori
+la cui lunghezza e' una potenza di 3.
+
+Come facciamo a calcolare la DFT di un vettore di un vettore di 12 elementi?
+Basta scomporre 12 in 12 = 4 * 3 = 2^2 * 3, quindi facendo un passo di
+radix 3, ci rimarranno da fare altri due passi di radix due per calcolare
+la DFT.
+Pacchetti come FFTW3 e DFFTPACK eseguono queste operazioni automaticamente
+per conto nostro.
+

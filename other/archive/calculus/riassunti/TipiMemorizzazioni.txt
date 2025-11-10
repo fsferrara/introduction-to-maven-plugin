@@ -1,0 +1,55 @@
+BAND STORAGE
+
+Questa memorizzazione e' utile per memorizzare matrici a banda.
+Si consideri la seguente matrice a bandauna matrice 6x6 con p=1 e q=2
+
+a(1,1) a(1,2) a(1,3)
+a(2,1) a(2,2) a(2,3) a(2,4)
+       a(3,2) a(3,3) a(3,4) a(3,5)
+              a(4,3) a(4,4) a(4,5) a(4,6)
+                     a(5,4) a(5,5) a(5,6)
+                            a(6,5) a(6,6)
+
+questa matrice viene memorizzata nel formato BAND STORAGE nel seguente
+modo:
+
+   *      *   a(1,3) a(2,4) a(3,5) a(4,6)
+   *   a(1,2) a(2,3) a(3,4) a(4,5) a(5,6)
+a(1,1) a(2,2) a(3,3) a(4,4) a(5,5) a(6,6)
+a(2,1) a(3,2) a(4,3) a(5,4) a(6,5)    *
+
+
+
+
+PACKED STORAGE
+
+Questa memorizzazione e' utile per matrici simmetriche oppure triangolari (inferiori o superiori).
+Si consideri la seguente matrice triangolare:
+
+a(1,1) a(1,2) a(1,3) a(1,4) a(1,5)
+       a(2,2) a(2,3) a(2,4) a(2,5)
+              a(3,3) a(3,4) a(3,5)
+                     a(4,4) a(4,5)
+                            a(5,5)
+
+questa matrice memorizzata in PACKED STORAGE per righe:
+
+a(1,1) a(1,2) a(1,3) a(1,4) a(1,5) a(2,2) a(2,3) a(2,4) a(2,5) a(3,3) a(3,4) a(3,5) a(4,4) a(4,5) a(5,5)
+
+mentre memorizzata in PACKED STORAGE per colonne:
+
+a(1,1) a(1,2) a(2,2) a(1,3) a(2,3) a(3,3) a(1,4) a(2,4) a(3,4) a(4,4) a(1,5) a(2,5) a(3,5) a(4,5) a(5,5)
+
+
+
+
+MEMORIZZAZIONE CON TRE VETTORI
+
+Questa memorizzazione e' utile per matrici sparse.
+Dicendo "nz" il numero di elementi non nulli dela matrice sparsa A ed n la sua dimensione, si memorizza
+la matrice in tre vettori:
+
+R[nz]  = (elementi non nulli riga per riga)
+J[nz]  = (indici di colonna degli elementi di R[])
+I[n+1] = (posizione in R del primo elemento non nullo di ogni riga di A; L'ultimo elemento e' I(n+1)=nz+1)
+

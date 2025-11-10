@@ -1,0 +1,90 @@
+###################################################################################
+#                                                                                 #
+#                      LABORATORIO DI CALCOLO SCIENTIFICO                         #
+#                               A.A. 2004/2005                                    #
+#                                                                                 #
+#                          Ferrara Francesco Saverio                              #
+#                              Matricola: 566/811                                 #
+#                          fsterrar@studenti.unina.it                             #
+#                                                                                 #
+###################################################################################
+
+
+
+I nomi delle routine di questa libreria sono tutti del tipo: XYYZZ
+
+Valori di X (indica la precisione):
+
+	s = singola precisione
+	d = doppia precisione
+	i = intero (solo per il vettore ipiv)
+
+
+
+Valori di YY (indica il tipo di struttura dati):
+
+	ma = generica matrice
+	mt = matrice triangolare (quadrata)
+	pc = packed storage
+	mb = matrice a banda
+	ve = generico vettore
+	mi = matrice identica
+	ip = vettore ipiv (routine lapack)
+
+
+
+Valori di ZZ (indica l'operazione da compiere):
+
+	le = leggi dallo standard input
+	st = stampa sullo standard output
+	ts = stampa la transposta
+	gt = get: prende in output
+
+
+
+Le routine restituiscono il puntatore alla matrice o al vettore. Quando non serve piu' la struttura dati, Ãe' bene liberare la memoria con il comando free().
+
+
+float *smale(float *a, int n, int m)
+double *dmale(double *a, int n, int m)
+Legge una matrice a[n,m]
+
+float *smigt(int n)
+double *dmigt(int n)
+restituisce una matrice identica i[n,n]
+
+int *iipgt(int n)
+restituisce il vettore delle permutazioni inizializzato
+
+void iipst(int *ipiv, int n)
+stampa il vettore delle permutazioni
+
+void smast(float *a, int n, int m)
+void dmast(double *a, int n, int m)
+stampa una matrice a[n,m] di double
+
+float *smtle(char uplo, float *a, int n)
+double *dmtle(char uplo, double *a, int n) 
+legge una matrice triangolare a[n,n] memorizzandola con il formato generale
+
+void smtst(float *a, int n)
+void dmtst(double *a, int n)
+come smast e dmast
+
+float *svele(float *x, int n)
+double *dvele(double *x, int n)
+legge un vettore
+
+void svest(float *x, int n)
+void dvest(double *x, int n)
+stampa un vettore
+
+float *smble(int n, int q, int p)
+legge una matrice a banda e la memorizza nel formato band storage
+
+float *spcle(int n)
+legge una matrice a[n,n], diagonale o simmetrica e la memorizza nel formato packed storage
+
+void smats(float *a, int n, int m)
+data la matrice a[n,m], stampa la sua transposta a[m,n]^T
+

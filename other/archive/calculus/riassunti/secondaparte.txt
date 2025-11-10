@@ -1,0 +1,31 @@
+Sistema sparso:
+Un sistema di equazioni lineari si dice “sparso” se ha molti coefficienti nulli; il grado di sparsità è SP=numero di coefficienti nulli / numero totale di coefficienti. In generale in un sistema dove A=nxm e p è il numero di coefficienti non nulli: SP=(n x m) – p / n x m. Dunque 0=<SP>=1, e più SP è prossimo a 1 maggiore è il grado si sparsità della matrice.
+
+I metodi iterativi:
+Per sistemi con elevato grado di sparsità l’algoritmo di Gauss non è molto efficiente in quanto non solo effettua operazioni su coefficienti nulli ma può anche portarli a essere non nulli. Per tale motivo c’è bisogno di metodi alternativi detti iterativi, che lavorano sui coefficienti non nulli. Per tale motivo è anche possibile implementare opportune tecniche di memorizzazione di matrici sparse per migliorare la complessità di spazio. Una di queste tecniche è quella dei tre vettori – CSR -  R contenente gli elementi non nulli per riga della matrice A, IC contente l’indice di colonna in A degli elementi presenti in R, J contente la posizione in R del primo elemento non nullo per ciascuna riga di A.
+
+Metodi iterativi: Jacobi
+Procedimento iterativo:a partire da arbitrari valori iniziali delle incognite x1(^0), x2(^0), x3(^0) , esegue una sequenza di iterazioni in ognuna delle quali si calcolano nuovi valori per le incognite utilizzando i valori calcolati nella iterazione precedente. Dunque dato un sistema Ax=b:
+ad ogni passo i=1…n   ->   xi(^k+1)=1/aii (bi – sum per j=1 to n con j!=i di (aij  xj(^k) )).
+La complessità di tale metodo per il calcolo delle n componenti ad ciascuna iterazione è 
+Tjac(n)=n(2n-1) operazioni=n^2 operazioni, ma siccome le operazioni vengono effettuate solo sui p coefficienti non nulli (SP=1- p/n^2) allora Tjac(n)= p operazioni= n^2 (1-SP) operazioni
+
+Metodi iterativi: Gauss-Seidel
+Il procedimento è simile a quella di Jacobi, la differenza sostanziale è che mentre in Jacobi ad ogni iterazione k il nuovo valore delle incognite è calcolato utilizzando unicamente i valori x1(^k-1), x2(^k-1), x3(^k-1) calcolati all’iterata precedente, in Gauss Seidel invece ad ogni passo k nel calcolare una xi(^k) possono essere utilizzati i valori xj(^k), per j<i e xj(^k-1) per j>=i (ossia i valori delle soluzioni del passo precedente k-1). Ad esempio nel calcolare x2(^k) viene utilizzato x1(^k) e x2(^k-1), x3(^k-1). . Dunque dato un sistema Ax=b:
+ad ogni passo i=1…n   ->   xi(^k+1)=1/aii (bi – [sum per j=1 to i-1 di (aij  xj(^k+1))] - [sum per j=i+1 to n di (aij  xj(^k))]). Analogamente a quanto accade per jacobi, Tgs(n)= p operazioni= n^2 (1-SP) operazioni.
+
+Convergenza e consistenza dei metodi iterativi:
+In generale Gauss-Seidel converge più velocemente alla soluzione rispetto a Jacobi. Tuttavia i metodi iterativi non sempre convergono alla soluzione del sistema.
+Un metodo iterativo si dice convergente se la successione generata dal metodo è convergente, qualunque siano i valori iniziali, cioè se lim (k->inf) di xi(^k)= xi(^*) per ogni i=1…n e per ogni xi(^0) approssimazione iniziale. Se il metodo converge allora esso convergerà alla soluzione; per tale caratteristica i metodi si dicono consistenti, ossia che quando converge esso converge alla soluzione. Un metodo iterativo si dive convergente se ||C||<1, dove ||C|| indica la norma della matrice C nxn dei coefficienti cij del sistema. Inoltre Jacobi converge con certezza anche quando la matrice è a diagonale strettamente dominante. Tali condizioni tuttavia sono solo sufficienti non necessarie in quanto il metodo può convergere anche se queste condizioni non sono soddisfatte.
+
+Efficienza di un metodo iterativo:
+La complessità totale di un metodo iterativo è: Ttot(n)= k Tit(n); dove k indica il numero di iterazioni eseguite (parametro dipendente dalla velocità di convergenza) e Tit(n) indica la complessità di tempo di 1 iterazione (parametro dipendente dal costo di ciascuna iterazione). Sia per Jacobi che per Gauss Seidel il numero di operazioni effettuate è relativo solo ai coefficienti p non nulli dunque T(n)= p operazioni= n^2 (1-SP) operazioni.
+
+Velocità di convergenza:
+||C|| oltre a garantire la convergenza serve a determinare la velocità di convergenza dato che  quanto più piccolo è questo valore tanto più velocemente si convergerà alla soluzione ottima.
+Indicando con eps(^k)=x(^k)- x(^*) l’errore di troncamento ammissibile alla k-esima iterazione (differenza all’iterata k tra l’approssimazione e la soluzione), dove || eps(^k)||<=||C^k || ||eps(^0)||, è possibili trovare il numero minimo di iterazioni per avere || eps(^k)||<tol (tol=tolleranza desiderata): k=[ ln (tol) – ln (||eps(^0)||) ]/ ln (||C||).
+La convergenza del metodo equivale alla convergenza a 0 dell’errore di troncamento alla k-esima iterazione, cioè di di eps(^k).
+
+Criteri di arresto:
+Il metodo iterativo può essere arrestato o agendo sull’errore assoluto e in tal caso il criterio d’arresto sarà: ||x(^k) – x*||<=tol, dove in generale tol=10(^-m) è l’approssimazione corretta a m cifre decimali; oppure sull’errore relativo ||x(^k) – x*|| / ||x*||<=tol, dove in generale tol=10(^-m) è l’approssimazione corretta a m-1 cifre significative; tuttavia utilizzando questi criteri si presuppone la conoscenza della soluzione x* ottima e quindi la necessità di determinare stime calcolabili dell’errore ad ogni iterazione. Mentre criteri d’arresto effettivamente utilizzabili sono quelli basate su quantità già calcolate e quindi basati o sulla stima dell’errore assoluto ||x(^k+1) – x(^k)||<=tol; o sull’errore relativo ||x(^k) – x(^k-1)|| / ||x(^k-1)||<=tol. 
+Altro criterio di arresto, aggiuntivo e/o sostitutivo, è quello basato sull’impostazione di un numero massimo Maxit di iterazioni che permette l’arresto anche nel caso in cui il metodo non converge e limita il costo computazionale del procedimento iterativo.

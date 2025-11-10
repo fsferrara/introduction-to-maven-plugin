@@ -1,0 +1,41 @@
+em {
+    background : yellow;
+}
+
+strong {
+    color : blue;
+    font-weight : bold;
+}
+
+h1 {
+    background : violet;
+}
+
+h2 {
+    background : green;
+}
+
+h3 {
+    background : orange;
+}
+
+p {
+    color : black;
+}
+
+.blue-pen {
+    color : blue;
+}
+
+.black-pen {
+    color : black;
+}
+
+.red-pen {
+    color : red;
+}
+
+.green-pen {
+    color : green;
+}
+

@@ -1,0 +1,97 @@
+INTRODUZIONE
+
+Se applichiamo un metodo diretto a un sistema lineare con matrice dei
+coefficienti sparsi, abbiamo che l'algoritmo esegue operazioni anche su
+i valori nulli. Un sistema lineare con matrice dei coefficienti sparsa, si
+dice sistema lineare sparso.
+Ad esempio se applichiamo Gauss a un sistema sparso, i coefficienti che erano nulli, al
+secondo passo diventano coefficienti non nulli: questo e' uno spreco
+computazionale!
+
+
+
+DEFINIZIONE MATRICE SPARSA
+
+E' una matrice a[n,m] in cui ci sono molti elementi uguali a 0. La sparsita' di una matrice
+si misura grazie al "Grado di sparsita'":
+
+      numero coefficienti nulli
+SP = ----------------------------
+      numero totale coefficienti
+
+Quando gli elementi nulli sono 0, allora  -> SP = 0 |
+                                                    |-> Quindi 0 <= SP <= 1
+Quando non ci sono elementi nulli, allora -> SP = 1 |
+
+La matrice e' molto sparsa quando SP e' molto vicino a 1.
+
+
+
+METODI ITERATIVI
+
+Dato un sistema lineare:
+
+/ a*x[1] + b*x[2] = c
+|
+\ d*x[1] + e*x[2] = f
+
+mettiamo da un membro x[1] e x[2]:
+
+/ x[1] = 1/a * (c - b*x[2])
+|
+\ x[2] = 1/e * (f - d*x[1])
+
+Adesso partiamo da una soluzione a caso x[1]=0 e x[2]=0, e iterando molte
+volte i calcoli pian piano si converge alla soluzione.
+
+
+
+JACOBI e GAUSS-SEIDEL
+
+Jacobi e Gauss-Seidel sono due metodi iterativi che implementano questa idea.
+L'unica differenza tra i due e' che Jacobi ad ogni iterazione si serve del
+vettore delle soluzioni calcolato all'iterazione precedente, mentre
+Gauss-Seidel man mano che calcola i nuovi valori li usa anche nell'iterazione
+corrente.
+
+
+
+SI CONVERGE SEMPRE ALLA SOLUZIONE?
+
+I metodi di Jacobi e Gauss-Seidel convergono quando dato il sistema Ax=b:
+- La norma infinito di A e':    ||A|| < 1
+Di conseguenza A e' a diagonale strettamente dominante
+
+Si noti che queste sono solo condizioni sufficienti e non necessari, infatti
+ci sono alcuni sistemi dove ||A|| > 1 e i metodi iterativi convergono
+lo stesso.
+
+Notiamo che quando piu' ||A|| si avvicina a 0, tanto piu' velocemente
+converge il metodo iterativo.
+
+
+
+TEOREMA SULLA CONVERGENZA CONSISTENTE
+
+Se il metodo di Jacobi o Gauss-Seidel converge, allora esso converge alla
+soluzione.
+Quindi non puo' essere che converge a qualche altra cosa!!!
+Si dice che i metodi di Jacobi o Gauss-Seidel sono consistenti.
+
+
+
+CRITERIO D'ARRESTO
+
+Sarebbe bellissimo misurare il criterio d'arresto con l'errore relativo o
+l'errore assoluto... peccato che queste due formule richiedono la conoscenza
+della vera soluzione: cosa che noi vorremmo sapere!
+Quindi stimiamo l'errore con l'iterazione precedente:
+
+Assoluto: | x[k+1] - x[k] | <= tolleranza
+Relativo: | (x[k+1] - x[k]) / x[k+1] | <= tolleranza
+
+Solo che con questo criterio d'arresto, se il metodo non converge,
+l'algoritmo non si fermera' mai... quindi imponeremo che l'algoritmo deve
+effettuare al massimo un mumero preciso di iterazioni (kmax)
+
+Un algoritmo efficiente utilizza entrambi questi criteri d'arresto.

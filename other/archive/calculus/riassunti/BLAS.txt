@@ -1,0 +1,111 @@
+INTRODUZIONE
+
+Le routine di blas si contengono {BLAS 3} C {BLAS 2} C {BLAS 1}
+BLAS 1: Operazioni vettore-vettore (SAXPY, SDOt, ...)
+BLAS 2: Operavioni matrice-vettore (SGEMV, ...)
+BLAS 3: Operazioni matrice-matrice (SGEMM, ...)
+
+
+
+SUFFISSO
+
+Ogni routine di BLAS (1, 2, 3) ha un suffisso rappresentato da una sola
+lettera. Essa puo' essere:
+ - s : reale in singola precisione
+ - d : reale in doppia precisione
+ - c : complesso in singola precisione
+ - z : complesso in doppia precisione
+
+
+
+BLAS 1
+
+Cercare il nome delle routine direttamente sulle Quick-References.
+
+
+
+BLAS 2
+
+Il nome delle routine e' strutturato in questo modo: X YY ZZ
+
+--> X  e' il suffisso
+  - s : reale in singola precisione
+  - d : reale in doppia precisione
+  - c : complesso in singola precisione
+  - z : complesso in doppia precisione
+
+--> YY e' il formato del dato
+  - GE : matrice di formato generico
+  - GB : matrice a banda
+  - SY : matrice simmetrica
+  - TR : matrice triangolare
+
+--> ZZ e' l'operazione da svolgere
+  - MV : prodotto matrice-vettore
+  - SV : risoluzione di un sistema di equazioni lineare
+
+
+
+BLAS 2
+
+Il nome delle routine e' strutturato in questo modo: X YY ZZ
+
+--> X  e' il suffisso
+  - s : reale in singola precisione
+  - d : reale in doppia precisione
+  - c : complesso in singola precisione
+  - z : complesso in doppia precisione
+
+--> YY e' il formato del dato
+  - GE : tutte le matrici sono di formato generico
+  - HE : una delle matrici e' hermitiane
+  - SY : una delle matrici e' simmetrica
+  - TR : una delle matrici e' triangolare
+
+--> ZZ e' l'operazione da svolgere
+  - MM : prodotto matrice-matrice
+  - SM : risoluzione di piu' sistemi di equazioni lineari
+
+
+
+ALCUNI PARAMETRI COMUNI
+
+> int incx : fattore di incremento del vettore x
+
+> int incy : fattore di incremento del vettore y
+
+> char uplo : 'u' (upper) se triangolare superiore,
+              'l' (lower) se triangolare inferiore.
+
+> char trans : 'n' se la matrice non si deve considerare trasposta,
+               't' (trasposta) altrimenti.
+
+> char diag : 'u' (unitaria) se la diagonale e' unitaria,
+              'n' altrimenti
+
+> char side : 'l' (left) la matrice deve stare a sinistra dell'altra
+              'r' (right) la matrice deve stare a destra dell'altra
+
+
+
+LIMITAZIONI DI BLAS
+
+BLAS non prevede particolari metodi di memorizzazione per le matrici (come
+Packed Storage o Band Storage), quindi spreca molto spazio.
+Inoltre nelle routine di BLAS 3 sfrutta le caratteristiche di una sola delle
+due matrici, e non entrambe.
+
+
+
+COMPILARE UN PROGRAMMA CHE UTILIZZA BLAS
+
+BLAS 1:       gcc -o ese prog.c -lblas
+BLAS 2 e 3:   gcc -o ese prog.c -lblas -lg2c
+
+
+
+CHIAMARE UNA ROUTINE FORTRAN DAL C
+
+Passare tutti i valori per indirizzo (quindi passiamo solo puntatori).
+il nome della routine, quando viene chiamata deve essere seguito da un carattere
+underscore... cioe': sgemm_(&parametri);

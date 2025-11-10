@@ -1,0 +1,84 @@
+GAUSS E LE MATRICI SIMMETRICHE
+
+Teorema: Applicando l'algoritmo di Gauss senza pivoting ad una matrice simmetrica,
+abbiamo che le sottomatrici attive sono simmetriche.
+
+
+Si puo' ridurre la complessita' dell'algoritmo di Gauss sfruttando la simmetria
+della matrice considerando solo un triangolo della matrice. Purtroppo questo rimane
+vero solo se applichiamo l'algoritmo di Gauss senza pivoting, altrimenti alla prima
+applicazione del pivoting si perde la simmetria delle matrici e vanifichiamo tutti i
+vantaggi.
+In generale, l'utilizzo di una tecnica di pivoting nell'algoritmo di Gauss NON
+CONSENTE di sfruttare, in termini di efficienza computazinale la simmetria della
+matrice... a patto che sia possibile non applicare il pivoting avendo sempre un
+algoritmo stabile.
+
+In quali condizioni so può evitare il pivoting?
+- Matrici a diagonale dominante (al generico passo K, le sottomatrici attive sono
+  a diagonale dominante)
+- Matrici simmetriche e definite positive
+
+
+
+MATRICI SIMMETRICHE (A=LDL^T)
+
+Se una matrice è simmetrica, la fattorizzazione A=LU (senza pivoting) si
+specializza in A=LDL^T dove:
+- L coincide con la L della fattorizzazione A=LU
+- D e' una matrice diagonale: la iagonale della matrice A
+
+Ma quando e' possibile applicare la fattorizzazione A=LU senza pivoting a una
+matrice simmetrica? Quando la matrice e':
+- Simmetrica
+- Le sottomatrici principali devono essere non singolari
+
+La fattorizzazione A=LDL^T si puo' applicare quando la matrice e':
+- simmetrica
+- definita positiva
+Ma in questo caso la fattorizzazione A=LDL^T si puo' specializzare nella
+fattorizzaziono A=LL^T (Algoritmo di Cholesky)
+
+
+
+CHOLESKY (A=LL^T)
+
+procedure cholesky (in: n, a; out: a)
+  for j=1, n
+    for k=1, n-1
+      a[j,j] = a[j,j] a[j,k]^2
+    a[j,j] = sqrt(a[j,j])
+    for i=j+1, n
+      for k=1, j-1
+        a[i,j] = a[i,j] - a[i,k] * a[j,k]
+      a[i,j] = a[i,j] / a[j,j]
+
+La fattorizzazione di Cholesky si usa quando abbiamo una matrice:
+- simmetrica
+- definita positiva
+e scompone A in: A=L * Trasposta(L)
+dove L e' una matrice triangolare inferiore con L[i,i]>0 Per ogni i=0...n
+
+T(chol)=O(n^3/6)
+L'Algoritmo di Cholesky ha una complessità di TEMPO che è la meta' di quella
+dell'Algoritmo di Gauss!!
+o> A e' simmetrica allora si memorizza solo una metà degli elementi,
+o> L e' triangolare allora si memorizzano solo gli elementi non nulli
+
+L'Algoritmo di Cholesky ha una complessità di SPAZIO che è la meta' di quella
+dell'Algoritmo di Gauss!!
+
+
+
+SIMMETRICA DIAGONALE DOMINANTE E SIMMETRICA DEFINITA POSITIVA
+
+         |-Simmetrica                        |-Simmetrica
+se   A = |                         =>    A = |                         ?
+         |-Diagonale dominante               |-Definita positiva
+
+Ovvero quando una matrice simmetrica a diagonale dominante e' anche definita 
+positiva? L'affermazione e' vera quando A e':
+- non singolare (det(A)>0)
+- simmetrica
+- a diagonale dominante
+- ha gli elementi sulla diag non negativi

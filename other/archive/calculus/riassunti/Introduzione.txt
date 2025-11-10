@@ -1,0 +1,56 @@
+INTRODUZIONE
+
+Caratteristiche fondamentali del software scientifico:
+Efficienza, Accuratezza, Affidabilità, Modularità, API standard, Portabilità,
+Facilità d'uso, Facilità di manutenzione
+
+Problem Solving:
+- Formulazione del problema P
+- Descrizione di P mediante un modello matematico: M(P)
+- Approssimazione di M(P) mediante metodi numerici Mh(P)
+- Sviluppo dell'algoritmo risolutivo Mh(P)
+- Implementazione in uno specifico ambiente di calcolo
+
+
+
+TEMPO DI ESECUZIONE DI UN SOFTWARE
+
+Da che cosa dipende il tempo di esecuzione di un software?
+Un' implementazione efficiente dipende oltre che dal numero di operazioni
+floating-point anche dagli accessi alla MEMORIA
+
+T1 = Nmem x tmem + N flop x t flop    mem=tempo di accesso alla memoria,
+flop=tempo operazioni floating point
+
+> Nmem & Nflop: dipende dall'algoritmo,
+> tmem & tflop: dipende dalla tecnologia.
+
+Ridurre il numero di accessi alla memoria, ridurre il tempo di accesso alla
+memoria --> riuso dei dati nei registri
+La complessità di tempo dell'algoritmo (Nflop) e la velocità del
+processore (tflop) sono fisse
+
+
+
+TRAFFICO PARASSITA
+
+Parametro di valitazione del traffico parassita:
+
+       #accessi alla memoria
+q = ----------------------------
+     #operazioni floating point
+
+ESEMPIO SAXPY: y=y+ax
+  > preleva x (n accessi),
+  > preleva y (n accessi),
+  > preleva a (1 accesso),
+  > calcolo = (2n op. fl.p.),
+  > riponi y (n accessi)
+  Calcoleremo il traffico parassita di SAXPY sara' calcolato come:
+     m     3*n+1
+q = --- = -------
+     f      2*n
+
+Come facciamo a ridurre il traffico parassita? Bisogna sfruttare il principio
+localita' dei dati utilizzando sempre i dati piu' "vicini". Una possibile
+strategia e' suddividere la matrice in blocchi di dimensione pari adatte cache.

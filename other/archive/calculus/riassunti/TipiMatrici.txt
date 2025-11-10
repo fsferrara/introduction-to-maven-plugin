@@ -1,0 +1,132 @@
+Matrice SINGOLARE
+
+e' una matrice triangolare (sueriore o inferiore), dove almeno un elemento
+a[i,i] della diagonale e' uguale a 0.
+La caratteristica di una matrice triangolare e' che se fa parte di un
+sistema lineare, allora il sistema ammette infinite soluzioni.
+Il determinante di una matrice singolare e' uguale a zero.
+
+
+
+
+Matrice A DIAGONALE DOMINANTE
+
+matrice quadrate appartenente a R[nxn] di dice a diagonale dominante se per
+ogni i=1,2,...,n vale:
+                 n
+abs(a[i,i]) >=  sum  abs(a[i,j]) quando i != j
+               i,j=1
+se vale il segno > allora di dice DIAGONALE STRETTAMENTE DOMINANTE
+
+
+
+
+Matrice DEFINITA POSITIVA
+
+una matrice quadrata A appartenente a R[nxn], che e' simmetrice, si dice
+definita positiva se per qualsiasi vettore x appartenente a R[n], e x != 0,
+risulta:  x(trasposto) * A * x > 0
+
+
+
+
+Matrice ORTOGONALE
+
+una matrice Q e' ortogonale se la sua inversa e' proprio uguale alla sua
+trasposta.
+Da Q * Q(inversa) = I  segue che Q * Q(trasosta) = I
+
+
+
+
+Matrice CIRCOLANTE
+
+e' una matrice dove il vettore riga k-esimo e' ottenuto dal vettore riga
+(k-1)-esimo shiftato circolarmente di una posizione verso destra:
+Esempio:
+1 2 3 4 5
+5 1 2 3 4
+4 5 1 2 3
+3 4 5 1 2
+2 3 4 5 1
+
+
+
+
+Matrici di TOEPLITZ
+
+Sono uguali alle Matrici CIRCOLANTI, con la caratteristica che non viene
+effettuato lo shift circolare, ma ad ogni shift puo' etrare un nuovo
+elemento. Esempio
+1 2 3 4 5
+9 1 2 3 4
+6 9 1 2 3
+0 6 9 1 2
+1 0 6 9 1
+Una matrice di TOEPLITZ puo' essere immersa in una matrice CIRCOLANTE piu'
+grande in modo da poter usare algoritmi per matrici CIRCOLANTI.
+
+
+
+
+Matrice SIMMETRICA
+
+Una matrice si dice simmetrica quando A[i][j] = A[j][i]
+
+
+
+
+Matrice BIDIAGONALE (superiore o inferiore)
+
+Bidiagonale inferiore se: a(i,j)=0 per j>i e per i>j+1
+Bidiagonale superiore se: a(i,j)=0 per i>j e per j>i+1
+
+
+
+
+Matrice TRIDIAGONALE
+
+Matrice tridiagonale: se a(i,j)=0 per |i-j|>1
+In una matrice tridiagonale di dim nxn gli elementi che bisogna effettivamente conservare
+sono quelli delle tre diagonali cioè sono 3n-2.
+
+
+
+
+Matrice SPARSA
+
+E' una matrice a[n,m] in cui ci sono molti elementi uguali a 0. La sparsita' di una matrice
+si misura grazie al "Grado di sparsita'":
+
+      numero coefficienti nulli
+SP = ----------------------------
+      numero totale coefficienti
+
+Quando gli elementi nulli sono 0, allora  -> SP = 0 |
+                                                    |-> Quindi 0 <= SP <= 1
+Quando non ci sono elementi nulli, allora -> SP = 1 |
+
+La matrice e' molto sparsa quando SP e' molto vicino a 1.
+
+
+
+
+Matrice A BANDA
+
+Ampiezza di banda inferiore=p, ampiezza di banda superiore=q  se a(i,j)=0 per i>j+p e per j>i+q 
+
+
+
+
+CONFRONTO: SIMMETRICA DIAGONALE DOMINANTE E SIMMETRICA DEFINITA POSITIVA
+
+         |-Simmetrica                        |-Simmetrica
+se   A = |                         =>    A = |                         ?
+         |-Diagonale dominante               |-Definita positiva
+
+Ovvero quando una matrice simmetrica a diagonale dominante e' anche definita 
+positiva? L'affermazione e' vera quando A e':
+- non singolare (det(A)>0)
+- simmetrica
+- a diagonale dominante
+- ha gli elementi sulla diag non negativi

@@ -1,0 +1,142 @@
+Caratteristiche fondamentali del software scientifico:
+Efficienza, Accuratezza, Affidabilità, Modularità, API standard, Portabilità, Facilità d’uso, Facilità di manutenzione
+
+Problem Solving:
+Formulazione del problema P, Descrizione di P mediante un modello matematico:M(P) approssimazione di M(P) mediante metodi numerici Mh(P), Sviluppo dell’algoritmo risolutivo Mh(P),Implementazione in uno specifico ambiente di calcolo
+
+Da che cosa dipende il tempo di esecuzione di un software?
+Un’ implementazione efficiente dipende oltre che dal numero di operazioni floating-point anche dagli accessi alla MEMORIA
+T1 = Nmem x tmem + N flop x t flop    mem=tempo di accesso alla memoria, flop=tempo operazioni floating point
+Nmem & Nflop: dipende dall'algoritmo; tmem & tflop: dipende dalla tecnologia.
+Ridurre il numero di accessi alla memoria, ridurre il tempo di accesso alla memoria --> riuso dei dati nei registri
+La complessità di tempo dell’algoritmo (Nflop) e la velocità del processore (tflop) sono fisse
+
+Vantaggi e caratteristiche delle BLAS
+Modularità: sw scritto in termini di building blocks; Chiarezza: codice più breve e più leggibile;
+Efficienza: implementazioni ottimizzate da parte dei costruttori di computer; Portabilità: interfacce standard, dipendenza dall’architettura incapsulata in BLAS; Affidabilità, robustezza: gestione accurata di “dettagli” algoritmici e implementativi e di situazioni di errore (es: overflow)
+
+Traffico parassita:
+Parametro di valitazione del traffico parassita: q = #accessi alla memoria / #operazioni floating point
+SAXPY: y=y+ax  --> preleva x (n accessi), preleva y (n accessi), preleva a (1 accesso), calcolo = (2n op. fl.p.), riponi y (n accessi)
+q = m/f = (3n+1) / (2n)
+DOT: a = x(trasposto) * y --> preleva x (n accessi), preleva y (n accessi), calcolo = (2n op. fl.p.), riponi in a (1 accesso)
+q = m/f = (2n+1) / (2n)  --> quasi 1.
+GAXPY: y=y+Mx  --> preleva y (n accessi), preleva M (n^2 accessi), preleva x (n accessi), calcolo y+Mx = (2n^2 op. fl.p.), riponi y (n accessi)
+q = m/f = (3n+n^2) / (2n^2)
+Strategia: Suddivisione della matrice in blocchi di dimensione pari alla cache
+
+
+Tecnica di LOOP UNROLLING
+Lo “srotolamento” del ciclo consistente nel modificare il controllo del ciclo e nel replicare opportunamente le istruzioni all’interno del ciclo viene detto Tecnica di LOOP UNROLLING
+Vantaggi del loop unrolling: Utilizzo ottimale dei processori con architettura pipelined, riduzione dell’overhead del ciclo di iterazione riduzione del numero di trasferimenti fra i vari livelli memoria, aumento delle operazioni concorrenti;L’overhead del programma e il numero di trasferimenti di dati dai livelli più bassi di memoria ai registri, si riducono di un fattore proporzionale alla nuova lunghezza del ciclo (profondità dell’unrolling); Svantaggi del loop unrolling: unrolling;Aumento della memoria destinata al programma; Perdita della generalità del codice
+
+
+Una matrice si dice simmetrica quando A[i][j] = A[j][i]
+
+Cholesky e matrici simmetriche:
+Applicando l'algoritmo di Gauss senza pivoting ad una matrice simmetrica, abbiamo che le sottomatrici attive sono anch’esse simmetriche. Questo è vero in generale e si dimostra.
+Si può sfruttare la simmetria considerando solo un triangolo della matrice.
+Se si usa il pivoting parziale si perde la simmetria della matrice.
+Quindi, in generale, l'utilizzo di una tecnica di pivoting nell’algoritmo di Gauss NON CONSENTE di sfruttare, in termini di efficienza computazionale la simmetria della matrice
+In quali condizioni si può evitare il pivoting?
+- Matrici a diagonale dominante (al generico passo K, le sottomatrici attive sono a diagonale dominante – il pivot starebbe sempre sulla diagonale)
+- Matrici simmetriche e definite positive (una matrice è def positiva se det(A)>0) (criterio di Sylvester)
+Se una matrice è simmetrica, la fattorizzazione A=LU (senza pivoting) si specializza in A=LDL^T (A=LU, D^-U=LT quindi U=DL^T, A=LDL^T) L=matrice triangolare inferiore(moltiplicatori), D=matrice diagonale(elementi diagonali di U))
+Come si specializza la fattorizzazione LDL^T di una matrice simmetrica e definita positiva?
+Esiste un’unica matrice L triangolare inferiore tale che: A=LL^T
+A=LLT --> Algoritmo di Cholesky    T(chol)=O((n^3)/6))=Tgauss(n)/2
+L’Algoritmo di Cholesky ha una complessità di TEMPO che è la metà di quella dell’Algoritmo di Gauss!!
+A è simmetrica allora si memorizza solo una metà degli elementi; L è triangolare allora si memorizzano solo gli elementi non nulli
+L’Algoritmo di Cholesky ha una complessità di SPAZIO che è la metà di quella dell’Algoritmo di Gauss!!
+Quando è possibile applicare la fattorizzazione LL^T ad una matrice simmetrica e a diagonale dominante? ovvero quando una matrice simmetrica a diagonale dominante è anche definita positiva?
+- non singolare (det(A)>0)
+- simmetrica
+- a diagonale dominante
+- ha gli elementi sulla diag non negativi
+
+Matrici TOEPLITZ ottenute l’una da una rotazione dell’altra.
+
+Matrice bidiagonale:
+- bidiagonale inferiore se: a(i,j)=0 per j>i e per i>j+1
+- bidiagonale superiore se: a(i,j)=0 per i>j e per j>i+1
+
+Matrice tridiagonale: se a(i,j)=0 per |i-j|>1
+In una matrice tridiagonale di dim nxn gli elementi che bisogna effettivamente conservare sono quelli delle tre diagonali cioè sono 3n-2.
+
+Matrice a banda: ampiezza di banda inferiore=p, ampiezza di banda superiore=q  se a(i,j)=0 per i>j+p e per j>i+q 
+
+Si consideri la seguente matrice a banda 6x6 con p=1 e q=2
+
+a(1,1) a(1,2) a(1,3)
+a(2,1) a(2,2) a(2,3) a(2,4)
+          a(3,2) a(3,3) a(3,4) a(3,5)
+                    a(4,3) a(4,4) a(4,5) a(4,6)
+                              a(5,4)  a(5,5) a(5,6)
+                                         a(6,5) a(6,6)
+
+questa matrice viene memorizzata nel seguente modo:
+
+*            *     a(1,3) a(2,4) a(3,5) a(4,6)
+*         a(1,2) a(2,3) a(3,4) a(4,5) a(5,6)
+a(1,1) a(2,2) a(3,3) a(4,4) a(5,5) a(6,6)
+a(2,1) a(3,2) a(4,3) a(5,4) a(6,5)    *
+ossia l’elemento a(i,j) è memorizzato nella colonna di posto j e nella riga di posto 3+i-j=q+1+i-j
+
+Fattorizzazione LU senza pivoting di una matrice tridiagonale e risoluzione dei sistemi lineari associati:
+si ha che i fattori L ed U di una matrice tridiagonale (che ammette fattorizzazione LU) sono matrici bidiagonali 
+
+Fattorizzazione LU di una matrice partizionata a blocchi:
+se abbiamo una matrice tridiagonale (w=p+q+1), conduce alle matrici bidiagonali dove
+L-> w=p+1=1+1=2; U-> w=q+1=1+1=2
+Gli elementi di U e di A appartenenti alla banda superiore coincidono; gli elementi di L da determinare sono L2 e L3; gli elementi di U da determinare sono le matrici diagonali U1, U2, U3
+
+Come si specializzano gli algoritmi di Forward e Back Substitution per matrici a blocchi?
+Si risolve Lz=y O(n^2) operazioni poi Ux=z (z è stato ricavato precedentemente)
+
+ALGORITMO FORWARD:
+for i=1 to n do
+	y[i]=b[i]-L[i]y[i-1]
+endfor
+(L[1]y[0]=0)
+
+
+ALGORITMO DI BACK
+for i=N to 1 do
+	U[i]x[i]=y[i]-F[i]y[i+1]
+endfor
+(F[n]x[n+1]=0)
+
+
+FATTORIZZAZIONE LU DI UNA MATRICE A BLOCCHI
+Supponiamo di avere una matrice partizionata in 9=3x3 blocchi
+(A11, A12, A13, A21, A22, A23, A31, A32, A33).
+Sappiamo che A=LU.
+Effettuando il prodotto:
+A11=L11 U11     A12=L11 U12                  A13=L11 U13
+A21=L21 U11     A22=L21 U12+L22 U22    A23=L21 U13+L22 U23
+A31=L31 U11     A32=L31 U12+L32 U22    A33=L31 U13+L32 U23+L33 U33
+Da queste uguaglianze si ricavano le espressioni per il calcolo dei blocchi di L e di U
+Ricordando l’algoritmo di fattorizzazione LU abbiamo che fissiamo la colonna e la riga e sotto abbiamo la matrice attiva.
+PASSO1:
+- fattorizzazione LU del “pannello verticale”
+- calcolo un pannello orizzontale di U
+- aggiorna la matrice attiva
+alla fine del passo 1 abbiamo:
+- il primo pannello verticale di L
+- il primo pannello orizzontale di U
+
+Nel PASSO 2 scendiamo di un livello quindi alla fine avremo:
+- il secondo pannello verticale di L
+- il secondo pannello orizzontale di U
+
+
+ALGORITMO LU BLOCK PARTITIONED
+A dcomposta in nxn blocchi di dim nbxnb
+
+For k=1, n step nb do
+- applica la fatt LU al pannello A(k:n,k:k+nb-1)
+- calcola il pannello U(k:k+nb-1, k+nb:n)
+- aggiorna la matrice attiva
+
+
+

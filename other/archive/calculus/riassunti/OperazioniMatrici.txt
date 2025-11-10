@@ -1,0 +1,22 @@
+1) Prodotto scalare tra due vettori
+   Da come risultato uno scalare.
+
+
+
+2) Prodotto Matrice-Matrice
+   Basato sul prodotto scalare di sue vettori.
+   A[nxm] * B[mxp] = C[nxp]
+
+
+
+3) Norma 1 di una matrice
+   Data una matrice facciamo la somma degli elementi riga per riga. La
+   norma 1 sara' uguale al massimo, in valore assoluto, di tutte le
+   somme ottenute.
+
+
+
+4) Norma infinito di una matrice
+   Data una matrice facciamo la somma degli elementi colonna per colonna. La
+   norma 1 sara' uguale al massimo, in valore assoluto, di tutte le
+   somme ottenute.

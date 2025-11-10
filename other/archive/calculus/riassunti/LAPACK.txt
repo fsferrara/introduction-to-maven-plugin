@@ -1,0 +1,72 @@
+INTRODUZIONE
+
+LAPACK (Linear Algebra PACKage) e' una libreria scritta in FORTRAN 77 per
+risolvere:
+- sistemi lineari di equazioni
+- problemi di minimi quadrati
+- calcolo degli autovalori
+- problemi ai valori singolari
+- fattorizzazioni di matrici
+- stima dell'indice di condizionamento
+
+
+
+STRUTTURA DI LAPACK
+
+In LAPACK ci sono tre livelli di routines:
+  1) Driver routine
+  2) Computational routine
+  3) Auxiliary routine
+
+Le DRIVER routine si basano sulle computational routine per risolvere un
+problema completo.
+Le COMPUTATIONAL routine eseguono un distinto nucleo computazionale.
+Le AUXILIARY routine sono routine aggiuntive come prodotto matrice-vettore,
+calcolare la norma, ecc...
+
+
+
+SCHEMA DI DENOMINAZIONE
+
+Tutte le Driver e Computational routine hanno questo schema: X YY ZZ
+dove: 
+
+-->  X   e' il tipo di dato
+ - s : reale in singola precisione
+ - d : reale in doppia precisione
+ - c : complesso in singola precisione
+ - z : complesso in doppia precisione
+
+-->  YY  e' il tipo di matrice
+ - BD bidiagonale
+ - GB banda
+ - GE generale
+ - ce ne sono molte altre... vedere le quick references!
+
+-->  ZZZ e' il tipo di calcolo da effettuare
+ - SVX o SV : risolve un sistema lineare
+ - ce ne sono troppi... vedere le quick references!
+
+
+
+RISOLUZIONE DI SISTEMI LINEARI CON LAPACK
+
+L'unica cosa che faremo con LAPACK e' risolvere sistemi lineari!!! Per
+facilitarci il lavoro cercheremo di scegliere sempre le Driver routine che si
+dividono in due gruppi:
+- Quelle che terminano per X sono per esperti e richiedono molti parametri,
+- Quelle che terminano senza X sono semplici e richiedono i parametri necessari.
+
+
+
+COMPILARE UN PROGRAMMA CHE UTILIZZA LAPACK
+
+gcc -o ese prog.c -llapack -lblas -lg2c
+
+
+
+CHIAMARE UNA ROUTINE FORTRAN DAL C
+
+Passare tutti i valori per indirizzo (quindi passiamo solo puntatori).
+il nome della routine, quando viene chiamata deve essere seguito da un carattere
+underscore... cioe': sgemm_(&parametri);
